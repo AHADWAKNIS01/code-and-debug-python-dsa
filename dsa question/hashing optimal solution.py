@@ -1,6 +1,9 @@
 n=[1,2,3,4,5,6,7,8,9,5,10]#element
 
 m=[10,11,111,15,17,16,2,3]#index
+#constraint is given so use the list
+#1<=n[i]<=10
+
 
 #making hash array of size 11
 hash_list=[0]*11
