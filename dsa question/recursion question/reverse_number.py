@@ -1,12 +1,11 @@
-#n=30#ending number
-#i starting number
+#printing number reverse using the recursion
+
 def func(i,n):
     if i>n:
         return
     else:
-        print(i)
         func(i+1,n)
+        print(i)
+
 
 func(1,30)
-
-    
