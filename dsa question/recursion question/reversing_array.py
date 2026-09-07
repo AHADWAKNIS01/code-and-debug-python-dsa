@@ -11,6 +11,8 @@ num=[1,2,34,5,65,7,7,88,9,]
 # func(num,0,len(num)-1)
 # print(num)
 
+
+#using the forloop
 for i in range(len(num)//2):
     num[i],num[len(num)-1-i]=num[len(num)-1-i],num[i]
 
