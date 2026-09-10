@@ -1,74 +1,111 @@
-
+# ```python
 '''
-Second Largest Element in an Array
-
-Description:
-Find the second largest element in the array.
+Second Largest Element Using Insertion Sort
 
 Approach:
-1. First, find the largest element.
-2. Then traverse the array again.
-3. Ignore the largest element.
-4. Find the maximum element among the remaining elements.
-5. That value is the second largest element.
+1. Sort the array using Insertion Sort.
+2. After sorting in ascending order, the largest element
+   will be at index n-1.
+3. Therefore, the second largest element will be at index n-2.
 
 Example:
-nums = [1, 2, 34, 5, 6, 4, 6, 8, 9, 3, 7, 8]
 
-Largest element = 34
+Original:
+[1, 2, 3, 4, 7, 8, 9, 5, 6, 66]
+
+After sorting:
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 66]
+
+Largest = 66
 Second largest = 9
 
-
 Time Complexity:
-Best Case:    O(n)
-Average Case: O(n)
-Worst Case:   O(n)
+Sorting using Insertion Sort = O(n²) average/worst case
+Finding second largest     = O(1)
 
-Reason:
-We traverse the array twice.
-O(n) + O(n) = O(2n) = O(n)
+Overall Time Complexity:
+O(n²)
 
-Space Complexity: O(1)
-
-Note:
-This approach assumes that the array contains at least
-two distinct elements.
+Space Complexity:
+O(1)
 '''
 
-def largest_element(nums):
+
+def nums_sort(nums):
+
+    # Find the total number of elements
     n = len(nums)
 
-    # -------------------------------------------------
-    # Step 1: Find the largest element
-    # -------------------------------------------------
-    largest = nums[0]
+    # Start from index 1 because the first element
+    # is considered already sorted
+    for i in range(1, n):
 
-    for i in range(0, n):
-        largest = max(largest, nums[i])
+        # Store the current element that we want
+        # to place in its correct position
+        key = nums[i]
 
-    # -------------------------------------------------
-    # Step 2: Find the largest element smaller than
-    #         the largest element
-    # -------------------------------------------------
+        # Start comparing with the element just before key
+        j = i - 1
 
-    # Start with the first element instead of 0,
-    # so negative numbers can also be handled.
-    second_largest = float('-inf')
+        # Move elements greater than key one position
+        # towards the right
+        while j >= 0 and key < nums[j]:
 
-    for i in range(0, n):
+            # Shift the larger element to the right
+            nums[j + 1] = nums[j]
 
-        # Ignore the largest element
-        if nums[i] < largest:
+            # Move one position towards the left
+            j -= 1
 
-            # Keep the maximum value smaller than largest
-            second_largest = max(nums[i], second_largest)
+        # Insert key into its correct position
+        nums[j + 1] = key
 
-    return second_largest
+    # Return the sorted array
+    return nums
 
 
-nums = [1, 2, 34, 5, 6, 4, 6, 8, 9, 3, 7, 8]
+def second_largest():
 
-second_largest = largest_element(nums)
+    # Input array
+    nums = [1, 2, 3, 4, 7, 8, 9, 5, 6, 66]
 
-print("second largest", second_largest)
+    # Find the number of elements
+    n = len(nums)
 
+    # Sort the array using Insertion Sort
+    sort_array = nums_sort(nums)
+
+    # After ascending sorting:
+    # index n-1 → largest
+    # index n-2 → second largest
+    return sort_array[n - 2]
+
+
+# Call the function and print the result
+print("second largest element is", second_largest())
+# ```
+
+# **Output:**
+
+# ```text
+# second largest element is 9
+# ```
+
+# ### 🧠 The main Insertion Sort logic
+
+# Remember these 4 lines:
+
+# ```python
+# key = nums[i]             # Pick the element
+# j = i - 1                 # Go backward
+# while j >= 0 and key < nums[j]:
+#     nums[j + 1] = nums[j] # Shift bigger element
+#     j -= 1                 # Move backward
+# nums[j + 1] = key         # Insert key
+# ```
+
+# **Pick → Compare backward → Shift bigger → Insert**
+
+# And for your problem:
+
+# **Sort → `n-2` → Second largest**.
