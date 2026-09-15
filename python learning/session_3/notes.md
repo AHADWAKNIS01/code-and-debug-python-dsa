@@ -1,286 +1,260 @@
-Absolutely. Here are **Session 03 — Conditional Statements** with clean, beginner-friendly Python solutions for **Q7–Q14**, including the question, code, and short explanation.
+# Python Session 03
 
-## Session 03 — Conditional Statements
+## Conditional Statements
 
-### Q7. Positive, Negative, or Zero
+### 1. What is a Conditional Statement?
 
-**Question:** Take a number as input. Print whether it is positive, negative, or zero.
+A conditional statement allows a program to **make decisions based on conditions**.
 
-```python
-num = int(input("Enter a number: "))
+The condition gives either:
 
-if num > 0:
-    print("Positive")
-elif num < 0:
-    print("Negative")
-else:
-    print("Zero")
-```
-
-**Logic:**
-
-* `num > 0` → Positive
-* `num < 0` → Negative
-* Otherwise → Zero
-
----
-
-### Q8. Greater of Two Numbers
-
-**Question:** Take two numbers as input. Print the greater of the two. If they are equal, print `"Both are equal."`
-
-```python
-a = int(input("Enter first number: "))
-b = int(input("Enter second number: "))
-
-if a > b:
-    print(a, "is greater")
-elif b > a:
-    print(b, "is greater")
-else:
-    print("Both are equal.")
+```text
+True  → Execute the code
+False → Skip / choose another block
 ```
 
 ---
 
-### Q9. Student Grade
+# 2. `if` Statement
 
-**Question:** Take a student's marks and print their grade.
-
-| Marks    | Grade |
-| -------- | ----- |
-| 90+      | A     |
-| 75–89    | B     |
-| 60–74    | C     |
-| 40–59    | D     |
-| Below 40 | F     |
+Used when you want code to execute **only when a condition is True**.
 
 ```python
-marks = int(input("Enter marks: "))
+age = 20
+
+if age >= 18:
+    print("Eligible to vote")
+```
+
+⚠️ **Indentation is mandatory in Python.**
+Usually, use **4 spaces** inside the block.
+
+---
+
+# 3. `if-else` Statement
+
+Used when there are **two possible outcomes**.
+
+```python
+age = 16
+
+if age >= 18:
+    print("Eligible")
+else:
+    print("Not eligible")
+```
+
+Only **one** of the two blocks executes.
+
+```text
+Condition True  → if block
+Condition False → else block
+```
+
+---
+
+# 4. `if-elif-else`
+
+Used when there are **multiple conditions/outcomes**.
+
+```python
+marks = 85
 
 if marks >= 90:
-    print("Grade A")
+    print("A")
 elif marks >= 75:
-    print("Grade B")
+    print("B")
 elif marks >= 60:
-    print("Grade C")
-elif marks >= 40:
-    print("Grade D")
+    print("C")
 else:
-    print("Grade F")
+    print("D")
 ```
 
-**Important:** We check from the **highest condition to the lowest**.
+### Important
+
+Python checks conditions **from top to bottom** and executes the **first True condition**.
 
 ---
 
-### Q10. Leap Year
+# 5. Nested `if`
 
-**Question:** Check whether a year is a leap year.
+An `if` statement inside another `if` statement is called a **nested if**.
+
+```python
+age = 20
+has_id = True
+
+if age >= 18:
+    if has_id:
+        print("Entry allowed")
+```
+
+Useful when the second condition should be checked **only if the first condition is True**.
+
+---
+
+# 6. Ternary Operator
+
+A simple `if-else` can be written in **one line**.
+
+### Syntax
+
+```python
+value_if_true if condition else value_if_false
+```
+
+Example:
+
+```python
+age = 20
+
+result = "Adult" if age >= 18 else "Minor"
+
+print(result)
+```
+
+Output:
+
+```text
+Adult
+```
+
+### Example: Even/Odd
+
+```python
+num = 7
+
+print("Even" if num % 2 == 0 else "Odd")
+```
+
+---
+
+# ⭐ Quick Revision
+
+```text
+if
+↓
+Runs when condition is True
+
+if-else
+↓
+Two possible outcomes
+
+if-elif-else
+↓
+Multiple conditions
+
+nested if
+↓
+if inside another if
+
+ternary
+↓
+One-line if-else
+```
+
+### Condition Flow
+
+```text
+          Condition
+          /       \
+       True       False
+        ↓           ↓
+       if         else
+```
+
+### Important Rules
+
+* Use `:` after `if`, `elif`, and `else`.
+* Indentation is mandatory.
+* `elif` means **else if**.
+* Python checks `elif` conditions **top to bottom**.
+* Only the **first True** condition in an `if-elif-else` chain executes.
+
+---
+
+# Practice Questions
+
+### Q7
+
+Take a number and print whether it is:
+
+* Positive
+* Negative
+* Zero
+
+### Q8
+
+Take two numbers and print:
+
+* Greater number
+* `"Both are equal"` if they are equal.
+
+### Q9
+
+Take marks and print the grade:
+
+```text
+90+    → A
+75–89  → B
+60–74  → C
+40–59  → D
+< 40   → F
+```
+
+### Q10
+
+Take a year and check whether it is a **leap year**.
 
 A year is a leap year if:
 
-* divisible by `400`, **OR**
-* divisible by `4` but **not** divisible by `100`
-
-```python
-year = int(input("Enter year: "))
-
-if year % 400 == 0:
-    print("Leap year")
-elif year % 4 == 0 and year % 100 != 0:
-    print("Leap year")
-else:
-    print("Not a leap year")
+```text
+Divisible by 4
+AND
+Not divisible by 100
+OR
+Divisible by 400
 ```
-
-**Examples:**
-
-* `2024` → Leap year
-* `1900` → Not a leap year
-* `2000` → Leap year
 
 ---
 
 # Homework
 
-### Q11. Age and Valid ID
+### Q11
 
-**Question:** A person can enter a venue only if they are **18 or older AND have a valid ID**.
+Take age and valid ID (`True/False`).
 
-```python
-age = int(input("Enter your age: "))
-has_id = input("Do you have a valid ID? (True/False): ")
-
-if age >= 18 and has_id == "True":
-    print("You can enter the venue.")
-else:
-    print("You cannot enter the venue.")
-```
-
-### Logic
-
-Both conditions must be true:
+Entry is allowed only when:
 
 ```text
-age >= 18  AND  valid ID
+age >= 18 AND valid ID
 ```
 
-If either one is false → entry denied.
+### Q12
 
----
+Take three numbers and find the **largest** without using a built-in function.
 
-### Q12. Largest of Three Numbers
+### Q13
 
-**Question:** Take three numbers as input and print the largest without using a built-in function.
-
-```python
-a = int(input("Enter first number: "))
-b = int(input("Enter second number: "))
-c = int(input("Enter third number: "))
-
-if a >= b and a >= c:
-    print("Largest:", a)
-elif b >= a and b >= c:
-    print("Largest:", b)
-else:
-    print("Largest:", c)
-```
-
-**Example:**
+Using the ternary operator, print:
 
 ```text
-Input:
-10
-25
-15
-
-Output:
-Largest: 25
+Even
 ```
 
-**Time Complexity:** `O(1)`
-Because we always perform a fixed number of comparisons.
-
----
-
-### Q13. Even or Odd Using Ternary Operator
-
-**Question:** Using the ternary operator, print `"Even"` or `"Odd"` in a single line.
-
-```python
-num = int(input("Enter a number: "))
-
-print("Even" if num % 2 == 0 else "Odd")
-```
-
-### Normal if-else
-
-```python
-if num % 2 == 0:
-    print("Even")
-else:
-    print("Odd")
-```
-
-### Ternary version
-
-```python
-print("Even" if num % 2 == 0 else "Odd")
-```
-
-**Pattern:**
-
-```python
-value_if_true if condition else value_if_false
-```
-
----
-
-### Q14. Shop Discount
-
-**Question:** A shop gives discounts based on purchase amount:
-
-* Above `5000` → 20%
-* Above `2000` → 10%
-* Above `1000` → 5%
-* `1000` or below → No discount
-
-```python
-amount = float(input("Enter purchase amount: "))
-
-if amount > 5000:
-    discount = amount * 0.20
-elif amount > 2000:
-    discount = amount * 0.10
-elif amount > 1000:
-    discount = amount * 0.05
-else:
-    discount = 0
-
-final_amount = amount - discount
-
-print("Discount:", discount)
-print("Final amount:", final_amount)
-```
-
-### Example
-
-If purchase amount is `6000`:
+or
 
 ```text
-Discount = 6000 × 20 / 100
-         = 1200
-
-Final amount = 6000 - 1200
-             = 4800
+Odd
 ```
 
-**Output:**
+### Q14
+
+Calculate discount based on purchase amount:
 
 ```text
-Discount: 1200.0
-Final amount: 4800.0
+> 5000       → 20%
+> 2000       → 10%
+> 1000       → 5%
+1000 or less → No discount
 ```
-
-### ⭐ Important patterns to remember
-
-```python
-# if
-if condition:
-    statement
-```
-
-```python
-# if-else
-if condition:
-    statement
-else:
-    statement
-```
-
-```python
-# if-elif-else
-if condition:
-    statement
-elif condition:
-    statement
-else:
-    statement
-```
-
-```python
-# nested if
-if condition:
-    if another_condition:
-        statement
-```
-
-```python
-# ternary
-value_if_true if condition else value_if_false
-```
-
-And remember the main operators used in conditions:
-
-`>`, `<`, `>=`, `<=`, `==`, `!=`, `and`, `or`, `not`
