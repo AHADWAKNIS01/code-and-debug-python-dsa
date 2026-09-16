@@ -1,0 +1,25 @@
+def consecutive_logest_sequence(nums):
+    my_set=set()
+
+    n=len(nums)
+
+    for i in range(0,n):
+        my_set.add(nums[i])
+
+    longest=0
+    
+
+    for num in my_set:
+        if num-1 not in my_set:
+            count=1
+           
+            while num+1 in my_set:
+                count+=1
+                num+=1
+
+            longest=max(longest,count)
+
+
+        return longest
+
+
