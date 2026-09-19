@@ -36,7 +36,7 @@ s2 = Student()
 
 ---
 
-```
+```python
 class student:
     roll_no=0
     name=""
@@ -46,6 +46,9 @@ class student:
 s1=student
 s1.roll_no=7
 print(s1.roll_no)
+s2=student
+s2.roll_no=7
+print(s2.roll_no)
 ```
 
 # `self`
