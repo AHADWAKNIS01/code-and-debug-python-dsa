@@ -158,6 +158,133 @@ a:int → input should be integer
 ```
 
 ---
+# Mutating vs Rebinding in Python
+
+## 1. Mutating
+
+**Mutating = changing the existing object.**
+
+Example:
+
+```python
+nums = [1, 2, 3]
+
+nums.append(4)
+```
+
+Before:
+```text
+[1, 2, 3]
+```
+
+After:
+```text
+[1, 2, 3, 4]
+```
+
+The **same list object** is changed.
+
+### Common Mutating Operations
+
+```python
+list.append()
+list.remove()
+list.sort()
+
+dict.update()
+
+set.add()
+```
+
+---
+
+## 2. Rebinding
+
+**Rebinding = making a variable point to a different object.**
+
+Example:
+
+```python
+x = 10
+
+x = 20
+```
+
+`x` first points to `10`, then points to `20`.
+
+The original object is **not changed**.
+
+Another example:
+
+```python
+nums = [1, 2, 3]
+
+nums = [4, 5, 6]
+```
+
+Here, `nums` now points to a **new list**.
+
+---
+
+# Mutating vs Rebinding
+
+### Mutating
+
+```python
+nums = [1, 2, 3]
+
+nums.append(4)
+```
+
+➡️ Same object is changed.
+
+### Rebinding
+
+```python
+nums = [1, 2, 3]
+
+nums = [4, 5, 6]
+```
+
+➡️ Variable points to a new object.
+
+---
+
+# Function Example
+
+```python
+def change(nums):
+    nums.append(4)       # Mutating
+    nums = [10, 20, 30]  # Rebinding
+
+numbers = [1, 2, 3]
+
+change(numbers)
+
+print(numbers)
+```
+
+Output:
+
+```text
+[1, 2, 3, 4]
+```
+
+### Why?
+
+- `nums.append(4)` → changes the original list.
+- `nums = [10,20,30]` → rebinds only the local `nums`.
+- `numbers` still points to the original list.
+
+---
+
+## Easy Rule
+
+**Mutating → changes the object.**
+
+**Rebinding → changes what the variable points to.**
+
+---
 
 # 3. Object-Oriented Programming (OOP)
 
