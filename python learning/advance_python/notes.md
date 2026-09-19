@@ -253,6 +253,19 @@ student: dict[str, int] = {
 | Dictionary | `dict[str, int]`  |
 
 **Note:** Type hints do not force the type at runtime. They mainly help with readability, IDE support, and static type checking.
+
+# None Type Hint
+
+`None` means the function does not return any value.
+
+```python
+def greet(name: str) -> None:
+    print(f"Hello {name}")
+```
+
+* `name: str` → input should be a string
+* `-> None` → function returns nothing
+
 ---
 # Mutating vs Rebinding in Python
 
