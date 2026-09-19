@@ -124,39 +124,135 @@ Output:
 ---
 
 # 2. Professional Code Practices
-
 # Type Annotations (Type Hints)
 
 Used to specify expected data types.
 
 Improves:
-- Code readability
-- Error detection
-- Maintenance
 
-Example:
+* Code readability
+* Error detection
+* Maintenance
+
+## Basic Example
 
 Without type hint:
 
 ```python
-def add(a,b):
-    return a+b
+def add(a, b):
+    return a + b
 ```
 
 With type hint:
 
 ```python
-def add(a:int, b:int) -> int:
-    return a+b
+def add(a: int, b: int) -> int:
+    return a + b
 ```
 
 Explanation:
 
-```
-a:int → input should be integer
+```text
+a: int → input should be integer
+b: int → input should be integer
 -> int → function returns integer
 ```
 
+---
+
+## List
+
+```python
+def get_numbers(nums: list[int]) -> list[int]:
+    return nums
+```
+
+```text
+list[int] → list containing integers
+```
+
+Example:
+
+```python
+numbers: list[int] = [1, 2, 3, 4]
+```
+
+---
+
+## Tuple
+
+```python
+def get_data(data: tuple[str, int]) -> tuple[str, int]:
+    return data
+```
+
+```text
+tuple[str, int] → tuple containing a string and an integer
+```
+
+Example:
+
+```python
+student: tuple[str, int] = ("Ahad", 20)
+```
+
+---
+
+## Set
+
+```python
+def get_unique(nums: set[int]) -> set[int]:
+    return nums
+```
+
+```text
+set[int] → set containing integers
+```
+
+Example:
+
+```python
+numbers: set[int] = {1, 2, 3, 4}
+```
+
+---
+
+## Dictionary
+
+```python
+def get_student(data: dict[str, int]) -> dict[str, int]:
+    return data
+```
+
+```text
+dict[str, int] → keys are strings, values are integers
+```
+
+Example:
+
+```python
+student: dict[str, int] = {
+    "age": 20,
+    "marks": 90
+}
+```
+
+---
+
+## Quick Reference
+
+| Data Type  | Type Hint         |
+| ---------- | ----------------- |
+| Integer    | `int`             |
+| String     | `str`             |
+| Float      | `float`           |
+| Boolean    | `bool`            |
+| List       | `list[int]`       |
+| Tuple      | `tuple[str, int]` |
+| Set        | `set[int]`        |
+| Dictionary | `dict[str, int]`  |
+
+**Note:** Type hints do not force the type at runtime. They mainly help with readability, IDE support, and static type checking.
 ---
 # Mutating vs Rebinding in Python
 
@@ -284,7 +380,7 @@ Output:
 
 **Rebinding → changes what the variable points to.**
 
----
+
 
 # 3. Object-Oriented Programming (OOP)
 
