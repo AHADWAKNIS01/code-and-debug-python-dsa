@@ -36,24 +36,27 @@ s2 = Student()
 
 ---
 
+**class and object creation**
 ```python
-class student:
+class Student:
     roll_no=0
     name=""
     age=0
 
 #object or instance created as s1
-s1=student
+s1=Student()
 s1.roll_no=7
 print(s1.roll_no)
-s2=student
+s2=Student
 s2.roll_no=7
 print(s2.roll_no)
 ```
 
+**using the function**
+
 # `self`
 
-`self` refers to the **current object**.
+`self` refers to the **current object who is calling**.
 
 ```python
 class Student:
