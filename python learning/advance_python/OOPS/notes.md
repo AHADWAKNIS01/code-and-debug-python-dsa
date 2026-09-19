@@ -36,6 +36,18 @@ s2 = Student()
 
 ---
 
+```
+class student:
+    roll_no=0
+    name=""
+    age=0
+
+#object or instance created as s1
+s1=student
+s1.roll_no=7
+print(s1.roll_no)
+```
+
 # `self`
 
 `self` refers to the **current object**.
