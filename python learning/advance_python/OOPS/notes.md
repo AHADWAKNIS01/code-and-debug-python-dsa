@@ -52,8 +52,10 @@ s2.roll_no=7
 print(s2.roll_no)
 ```
 
-**using the function**
-
+**Uing the function**
+class student:
+    def display detial(self):
+    
 # `self`
 
 `self` refers to the **current object who is calling**.
