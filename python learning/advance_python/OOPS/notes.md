@@ -674,7 +674,7 @@ Child method gets priority.
 
 ---
 
-## `super()`
+## `super()`>
 
 Used to call the parent's method.
 
