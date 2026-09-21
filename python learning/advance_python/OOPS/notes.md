@@ -361,7 +361,7 @@ A public attribute can be accessed directly from outside the class.
 ```python
 class Student:
     def __init__(self, name):
-        self.name = name
+        self.name = name #public
 
 
 student = Student("Ahad")
@@ -640,6 +640,90 @@ Name mangling mainly helps to:
 * Indicate that an attribute is intended to be private
 
 ---
+# Python `@property`
+
+`@property` is a built-in decorator that allows us to **access a method like an attribute**, without using `()`.
+
+### Without `@property`
+
+```python
+class Student:
+    def __init__(self, name):
+        self.__name = name
+
+    def get_name(self):
+        return self.__name
+
+
+s1 = Student("Ahad")
+print(s1.get_name())
+```
+
+### With `@property`
+
+```python
+class Student:
+    def __init__(self, name):
+        self.__name = name
+
+    @property
+    def name(self):
+        return self.__name
+
+
+s1 = Student("Ahad")
+print(s1.name)
+```
+
+Notice:
+
+```python
+s1.name       # No ()
+```
+
+instead of:
+
+```python
+s1.name()     # Method call
+```
+
+### `@property` with Setter
+
+We can also control how an attribute is **changed**:
+
+```python
+class Bank:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    @property
+    def balance(self):
+        return self.__balance
+
+    @balance.setter
+    def balance(self, amount):
+        if amount >= 0:
+            self.__balance = amount
+        else:
+            print("Invalid amount")
+
+
+b1 = Bank(500)
+
+print(b1.balance)   # Getter
+b1.balance = 1000   # Setter
+```
+
+### Remember
+
+* `@property` → **getter**
+* `@name.setter` → **setter**
+* Allows `obj.name` instead of `obj.name()`
+* Useful for **encapsulation and controlled access to data**
+
+---
+
+
 
 # 12. Complete Encapsulation Example
 
