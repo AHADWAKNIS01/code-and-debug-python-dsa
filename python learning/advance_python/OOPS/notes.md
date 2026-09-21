@@ -16,45 +16,68 @@ OOP organizes code using **classes and objects**.
 ### Class
 
 A **class** is a blueprint for creating objects.
-
+and writ the class in Pascal means first letter capital
 ```python
+
 class Student:
-    pass
+#attribute
+   roll_no=0
+    age=0
+    name=""
 ```
 
 ### Object
 
 An **object** is an instance of a class.
-
+In this s1,s2 are the object
 ```python
 s1 = Student()
+s1.roll_no=56
+s1.age=56
+
 s2 = Student()
+s2.age=69
+
+print(s1.age)
+print(s2.age)
+
+
 ```
+
+
 
 **Class → Blueprint**
 **Object → Instance**
 
 ---
 
-**class and object creation**
+**class and object and function**
 ```python
 class Student:
     roll_no=0
     name=""
     age=0
 
+    def set_details(self):
+        self.roll_no=int(input("enter roll"))
+        self.age=int(input("enter the age"))
+
+    def display_detials(self)
+        print(self.roll_no)
+        print(self.age)
+
+
 #object or instance created as s1
 s1=Student()
-s1.roll_no=7
-print(s1.roll_no)
+s1.self_detail()
+s1.display_detials()
 s2=Student
 s2.roll_no=7
-print(s2.roll_no)
+s2.self_detail()
+s2.display_detials()
 ```
 
-**Uing the function**
-class student:
-    def display detial(self):
+
     
 # `self`
 
@@ -85,11 +108,17 @@ class Student:
         self.name = name
         self.age = age
 
-s1 = Student("Ahad", 20)
+s1 = Student("Ahad", 20) //as we have put the value so as the obeject create init run automatically
 ```
 
 * `self.name` → instance attribute
 * `self.age` → instance attribute
+
+---
+
+
+---
+***complete example**
 
 ---
 
