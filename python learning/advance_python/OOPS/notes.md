@@ -291,7 +291,149 @@ print(MathUtils.is_even(10))
 
 ## 1. Encapsulation
 
-**Bundling data and methods together** and controlling access to data.
+# Encapsulation in OOP
+
+Encapsulation is one of the **four pillars of Object-Oriented Programming (OOP)**.
+
+## Definition
+
+**Encapsulation** means **bundling data (attributes) and methods that operate on that data inside a class**, while controlling direct access to the data.
+
+### Simple Formula
+
+> **Encapsulation = Data + Methods + Controlled Access**
+
+---
+
+# 1. Example of Encapsulation
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+
+
+account = BankAccount(5000)
+
+account.deposit(1000)
+
+print(account.get_balance())
+```
+
+### Output
+
+```text
+6000
+```
+
+### Explanation
+
+* `__balance` is the **data/attribute**.
+* `deposit()` is a **method** that modifies the balance.
+* `get_balance()` is a **method** that reads the balance.
+* `__balance` is treated as a **private attribute**.
+* Instead of directly modifying the balance, we use methods.
+
+---
+
+# 2. Access Modifiers in Python
+
+Python commonly uses three levels of access:
+
+| Type      | Syntax        | Meaning                                  |
+| --------- | ------------- | ---------------------------------------- |
+| Public    | `self.name`   | Can be accessed directly                 |
+| Protected | `self._name`  | Intended for internal/subclass use       |
+| Private   | `self.__name` | Intended to be accessed inside the class |
+
+---
+
+# 3. Public Attribute
+
+A public attribute can be accessed directly from outside the class.
+
+```python
+class Student:
+    def __init__(self, name):
+        self.name = name
+
+
+student = Student("Ahad")
+
+print(student.name)
+```
+
+### Output
+
+```text
+Ahad
+```
+
+Here, `name` is a **public attribute**.
+
+---
+
+# 4. Protected Attribute
+
+A protected attribute starts with a **single underscore `_`**.
+
+```python
+class Student:
+    def __init__(self, marks):
+        self._marks = marks
+
+
+student = Student(90)
+
+print(student._marks)
+```
+
+The `_marks` attribute is accessible, but the underscore indicates:
+
+> "This attribute is intended for internal use or use by subclasses."
+
+### Important
+
+Python does **not strictly prevent** access to protected attributes.
+
+It is mainly a **programmer's convention**.
+
+---
+
+# 5. Private Attribute
+
+A private attribute starts with **two underscores `__`**.
+
+```python
+class Student:
+    def __init__(self, marks):
+        self.__marks = marks
+
+
+student = Student(90)
+```
+
+Trying to directly access:
+
+```python
+print(student.__marks)
+```
+
+will normally produce an error because `__marks` is treated as a private attribute.
+
+---
+
+# 6. Data Hiding
+
+**Data hiding** means restricting direct access to the internal data of an object.
+
+Example:
 
 ```python
 class BankAccount:
@@ -299,7 +441,370 @@ class BankAccount:
         self.__balance = balance
 ```
 
-`__balance` is treated as a private attribute.
+Here, the balance is hidden from normal direct access.
+
+Instead of directly changing it, we can provide methods:
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def deposit(self, amount):
+        self.__balance += amount
+
+    def get_balance(self):
+        return self.__balance
+```
+
+This gives us **controlled access** to the data.
+
+---
+
+# 7. Getter
+
+A **getter** is a method used to **read/access** a private attribute.
+
+Example:
+
+```python
+class Student:
+    def __init__(self, marks):
+        self.__marks = marks
+
+    def get_marks(self):
+        return self.__marks
+```
+
+Usage:
+
+```python
+student = Student(90)
+
+print(student.get_marks())
+```
+
+### Output
+
+```text
+90
+```
+
+`get_marks()` is called a **getter method**.
+
+---
+
+# 8. Setter
+
+A **setter** is a method used to **modify/update** a private attribute.
+
+```python
+class Student:
+    def __init__(self, marks):
+        self.__marks = marks
+
+    def get_marks(self):
+        return self.__marks
+
+    def set_marks(self, marks):
+        self.__marks = marks
+```
+
+Usage:
+
+```python
+student = Student(90)
+
+student.set_marks(95)
+
+print(student.get_marks())
+```
+
+### Output
+
+```text
+95
+```
+
+---
+
+# 9. Getter + Setter with Validation
+
+One of the biggest advantages of encapsulation is that we can **validate data before modifying it**.
+
+```python
+class Student:
+    def __init__(self, marks):
+        self.__marks = marks
+
+    def get_marks(self):
+        return self.__marks
+
+    def set_marks(self, marks):
+        if 0 <= marks <= 100:
+            self.__marks = marks
+        else:
+            print("Invalid marks")
+
+
+student = Student(80)
+
+student.set_marks(95)
+print(student.get_marks())
+
+student.set_marks(150)
+```
+
+### Output
+
+```text
+95
+Invalid marks
+```
+
+Here, the setter prevents invalid marks from being stored.
+
+---
+
+# 10. Validation
+
+**Validation** means checking whether the data is valid before storing or modifying it.
+
+Example:
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    def set_balance(self, balance):
+        if balance >= 0:
+            self.__balance = balance
+        else:
+            print("Balance cannot be negative")
+```
+
+Now:
+
+```python
+account = BankAccount(5000)
+
+account.set_balance(7000)    # Valid
+account.set_balance(-1000)   # Invalid
+```
+
+This prevents incorrect data from being stored.
+
+---
+
+# 11. Name Mangling
+
+Python uses **name mangling** for attributes beginning with two underscores.
+
+Example:
+
+```python
+class BankAccount:
+    def __init__(self):
+        self.__balance = 5000
+```
+
+Python internally changes the name approximately to:
+
+```text
+_BankAccount__balance
+```
+
+So:
+
+```python
+account.__balance
+```
+
+normally does not work.
+
+However, this can technically be accessed using:
+
+```python
+account._BankAccount__balance
+```
+
+### Important
+
+Python's private attributes are **not completely private**.
+
+Name mangling mainly helps to:
+
+* Prevent accidental access
+* Avoid name conflicts
+* Indicate that an attribute is intended to be private
+
+---
+
+# 12. Complete Encapsulation Example
+
+```python
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance
+
+    # Getter
+    def get_balance(self):
+        return self.__balance
+
+    # Setter
+    def set_balance(self, balance):
+        if balance >= 0:
+            self.__balance = balance
+        else:
+            print("Balance cannot be negative")
+
+    # Method to deposit money
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+        else:
+            print("Invalid amount")
+
+
+account = BankAccount(5000)
+
+print(account.get_balance())
+
+account.deposit(1000)
+
+print(account.get_balance())
+
+account.set_balance(10000)
+
+print(account.get_balance())
+```
+
+### Output
+
+```text
+5000
+6000
+10000
+```
+
+---
+
+# 13. Real-Life Example
+
+Think about an **ATM**.
+
+The actual bank balance is stored internally.
+
+You don't directly modify:
+
+```text
+balance = 50000
+```
+
+Instead, you perform operations such as:
+
+```text
+Deposit
+Withdraw
+Check Balance
+```
+
+The ATM controls how the account data is accessed and modified.
+
+This is similar to **encapsulation**.
+
+---
+
+# 14. Advantages of Encapsulation
+
+### 1. Data Hiding
+
+Internal data can be protected from direct modification.
+
+### 2. Controlled Access
+
+We can decide how data can be accessed or modified.
+
+### 3. Validation
+
+We can check data before storing it.
+
+### 4. Security
+
+It reduces unwanted or accidental modification of important data.
+
+### 5. Maintainability
+
+The internal implementation can be changed without changing how the object is used.
+
+### 6. Better Organization
+
+Data and the methods that operate on it remain together inside a class.
+
+---
+
+# 15. Encapsulation vs Data Hiding
+
+These terms are related but not exactly the same.
+
+### Encapsulation
+
+Means:
+
+> **Bundling data and methods together and controlling access to the data.**
+
+### Data Hiding
+
+Means:
+
+> **Restricting direct access to internal data.**
+
+Therefore:
+
+**Data hiding is one important part/benefit of encapsulation.**
+
+---
+
+# 16. Important Points to Remember
+
+* Encapsulation is one of the **four pillars of OOP**.
+* It combines **data and methods inside a class**.
+* It provides **controlled access** to data.
+* Python uses `_` and `__` naming conventions for protected/private attributes.
+* `self.__variable` is treated as a private attribute.
+* **Getter** → reads data.
+* **Setter** → modifies data.
+* Setters can perform **validation**.
+* Python uses **name mangling** for double-underscore attributes.
+* Python private attributes are **not completely inaccessible**.
+* Encapsulation improves **organization, maintainability, and data protection**.
+
+---
+
+# Quick Revision
+
+```text
+                    ENCAPSULATION
+                          |
+          +---------------+---------------+
+          |                               |
+      Data + Methods                Controlled Access
+          |                               |
+      Class                        Data Hiding
+                                          |
+                                  +-------+-------+
+                                  |               |
+                               Getter          Setter
+                                  |               |
+                               Read Data       Modify Data
+                                                  |
+                                              Validation
+```
+
+### One-Line Definition
+
+> **Encapsulation is the process of bundling data and methods inside a class while controlling access to the data.**
 
 ---
 
