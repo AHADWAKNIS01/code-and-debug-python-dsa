@@ -464,4 +464,4 @@ creates a new object.
 - `__eq__()` controls `==`.
 - Comparison operators use dunder methods.
 - Dunder methods are also called **Magic Methods**.
-- They support polymorphism by allowing different objects to behave differently with the same operation.
+- They support polymorphism by allowing different objects to behave differently with the same operation.>
