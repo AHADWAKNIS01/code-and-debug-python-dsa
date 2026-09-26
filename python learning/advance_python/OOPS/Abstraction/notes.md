@@ -1,135 +1,160 @@
-# Polymorphism in Python
+# Abstraction in Python
 
-## Polymorphism
+## Abstraction
 
-Polymorphism means **"many forms"**.
-
-It allows the same method name to perform different tasks depending on the object.
+Abstraction means **hiding implementation details** and showing only the necessary features.
 
 Example:
-- Rectangle area → width × height
-- Circle area → π × radius²
+- We know a car has `start()`.
+- We don't need to know exactly how the engine works internally.
+
+Python provides abstraction using:
+- `ABC`
+- `abstractmethod`
 
 
 ---
 
-# Method Overriding (Runtime Polymorphism)
+# ABC (Abstract Base Class)
 
-When a child class provides its own implementation of a parent class method, it is called **method overriding**.
+`ABC` is used to create an **abstract class**.
+
+Import:
+
+```python
+from abc import ABC, abstractmethod
+```
 
 Example:
 
 ```python
-class Shape:
+from abc import ABC, abstractmethod
 
+
+class Shape(ABC):
+
+    @abstractmethod
     def area(self):
-        return 0
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
+```
+
+`Shape` is an **abstract class**.
+
+It defines what methods the child class must implement.
+
+
+---
+
+# @abstractmethod
+
+`@abstractmethod` makes a method an **abstract method**.
+
+Example:
+
+```python
+@abstractmethod
+def area(self):
+    pass
+```
+
+The child class must provide its own implementation of this method.
+
+
+---
+
+# Implementing an Abstract Class
+
+```python
+from abc import ABC, abstractmethod
+
+
+class Shape(ABC):
+
+    @abstractmethod
+    def area(self):
+        pass
+
+    @abstractmethod
+    def perimeter(self):
+        pass
 
 
 class Rectangle(Shape):
 
-    def __init__(self, w, h):
-        self.w = w
-        self.h = h
+    def __init__(self,l,b):
+        self.l = l
+        self.b = b
 
     def area(self):
-        return self.w * self.h
+        return self.l * self.b
+
+    def perimeter(self):
+        return 2 * (self.l + self.b)
 
 
-class Circle(Shape):
+rect = Rectangle(3,4)
 
-    def __init__(self, r):
-        self.r = r
-
-    def area(self):
-        return 3.14 * self.r ** 2
-
-
-shapes = [
-    Rectangle(3,4),
-    Circle(3)
-]
-
-
-for s in shapes:
-    print(s.area())
+print(rect.area())
+print(rect.perimeter())
 ```
 
 Output:
 
-```
+```text
 12
-28.26
+14
 ```
 
 
 ---
 
-# How Polymorphism Works
+# Important Rule
 
-Here:
+If a child class does **not implement all abstract methods**, we cannot create its object.
 
-```python
-s.area()
-```
-
-The same method call gives different results.
-
-### Rectangle Object:
-```python
-Rectangle(3,4)
-```
-
-Runs:
+Example:
 
 ```python
-return self.w * self.h
+class Rectangle(Shape):
+
+    def area(self):
+        return 12
 ```
 
+Here `perimeter()` is not implemented.
 
-### Circle Object:
+Therefore:
+
 ```python
-Circle(3)
+rect = Rectangle()
 ```
 
-Runs:
+will give an error because `Rectangle` is still abstract.
 
-```python
-return 3.14 * self.r ** 2
-```
+
+---
+
+# Abstract Class vs Normal Class
+
+| Abstract Class | Normal Class |
+|---|---|
+| Inherits from `ABC` | No need to inherit `ABC` |
+| Can contain abstract methods | Usually contains normal methods |
+| Cannot directly create its object | Can create its object |
+| Child must implement abstract methods | No such requirement |
 
 
 ---
 
 # Important Points
 
-- Polymorphism allows one interface with multiple implementations.
-- Child classes override parent methods.
-- The same method name behaves differently for different objects.
-- Commonly used with inheritance.
-- Makes code flexible and reusable.
-
-
----
-
-# Method Overloading in Python
-
-Python does not support traditional method overloading.
-
-Example:
-
-```python
-def area(self,w,h):
-    pass
-
-def area(self):
-    pass
-```
-
-The second method replaces the first one.
-
-Use:
-- Default arguments
-- `*args`
-
-instead of method overloading.
+- Abstraction hides implementation details.
+- `ABC` is used to create an abstract base class.
+- `@abstractmethod` defines a method that child classes must implement.
+- Abstract classes cannot be instantiated directly.
+- Child classes must implement all abstract methods.
+- Abstraction helps create a common structure for different classes.
