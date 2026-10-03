@@ -1,3 +1,4 @@
+
 # Singly Linked List - Traversal and Insert at Beginning
 #
 # Traversal means visiting each node one by one,
@@ -84,8 +85,33 @@ class SinglyLinkedList:
         curr.next = new_node
 
 
-        
+        # Delete a node by value
+    def delete(self, value):
+        curr = self.head
 
+        # Case 1: List is empty
+        if curr is None:
+            print("The list is empty")
+            return
+
+        # Case 2: Delete the first node
+        if curr.value == value:
+            self.head = curr.next
+            return
+
+        # Case 3: Delete a node from middle/end
+        prev = None
+
+        while curr is not None:
+            if curr.value == value:
+                prev.next = curr.next
+                return
+
+            prev = curr
+            curr = curr.next
+
+        # Case 4: Value not found
+        print("The node not found")
 
 
 
@@ -116,3 +142,22 @@ ll.insert_end(40)
 
 print("\nAfter insertion at end:")
 ll.traversal()
+
+
+print("\nBefore deletion:")
+ll.traversal()
+
+# Delete node with value 20
+ll.delete(20)
+
+print("\nAfter deleting 20:")
+ll.traversal()
+
+# Delete first node
+ll.delete(10)
+
+print("\nAfter deleting 10:")
+ll.traversal()
+
+# Try deleting a value that doesn't exist
+ll.delete(100)
