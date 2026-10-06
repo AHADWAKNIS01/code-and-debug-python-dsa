@@ -1,8 +1,8 @@
-# Find all pairs with given sum in Doubly Linked List
+# Remove duplicates from a Sorted Doubly Linked List
 #
-# TC: O(n^2)
-# SC: O(k)
-# k = number of pairs found
+# TC: O(n)
+# SC: O(1)
+
 
 
 class Node:
@@ -38,43 +38,39 @@ class DoublyLinkedList:
 
         print("None")
 
-    # Find pairs with given sum
-    def sum_of_pair(self, head, target):
-        left=head
-        right=head
-        result=[]
+    # Remove duplicates
+    def remove_duplicate(self, head):
+        curr = head
 
-        while right.next is not None:
-            right=right.next
+        while curr is not None and curr.next is not None:
+            if curr.value == curr.next.value:
+                duplicate = curr.next
+                curr.next = duplicate.next
 
-        while left is not None and right is not None and left!=right:
-            total=left.value+right.value 
-            if total==target:
-                result.append([left.value,right.value])
-                right=right.prev
-                left=left.next
-            elif total>target:
-                right=right.prev
+                if curr.next is not None:
+                    curr.next.prev = curr
             else:
-                left=left.next
+                curr = curr.next
 
-        return result
+        return head
+
 
 # ---------------- Calling ----------------
 
 dll = DoublyLinkedList()
 
-dll.insert_head(50)
 dll.insert_head(40)
 dll.insert_head(30)
+dll.insert_head(30)
+dll.insert_head(20)
+dll.insert_head(20)
 dll.insert_head(20)
 dll.insert_head(10)
 
-print("Doubly Linked List:")
+print("Before removing duplicates:")
 dll.display()
 
-target = 60
+dll.head = dll.remove_duplicate(dll.head)
 
-result = dll.sum_of_pair(dll.head, target)
-
-print("Pairs with sum", target, ":", result)
+print("After removing duplicates:")
+dll.display()

@@ -40,35 +40,27 @@ class DoublyLinkedList:
 
     # Find pairs with given sum
     def sum_of_pair(self, head, target):
-        left=head
-        right=head
+        temp=head
         result=[]
+        my_set=set()
 
-        while right.next is not None:
-            right=right.next
-
-        while left is not None and right is not None and left!=right:
-            total=left.value+right.value 
-            if total==target:
-                result.append([left.value,right.value])
-                right=right.prev
-                left=left.next
-            elif total>target:
-                right=right.prev
-            else:
-                left=left.next
-
+        while temp is not None:
+            remaining=target-temp.value
+            if remaining in my_set:
+                result.append([remaining,temp.value])
+            my_set.add(temp.value)
+            temp=temp.next
         return result
 
 # ---------------- Calling ----------------
 
 dll = DoublyLinkedList()
 
-dll.insert_head(50)
-dll.insert_head(40)
-dll.insert_head(30)
-dll.insert_head(20)
 dll.insert_head(10)
+dll.insert_head(20)
+dll.insert_head(30)
+dll.insert_head(40)
+dll.insert_head(50)
 
 print("Doubly Linked List:")
 dll.display()
