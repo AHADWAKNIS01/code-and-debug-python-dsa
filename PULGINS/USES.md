@@ -345,3 +345,160 @@ For major features:
 **Antigravity + Ponytail + Graphify + GSD**
 
 Roo Code is **optional** because Antigravity already provides its own AI coding agent.
+
+
+# Antigravity AI Coding Tools – Quick Notes
+### GSD · Ralph Wiggum · CodeRabbit
+
+## 1. GSD (Get Shit Done)
+
+**Definition:** GSD is an AI-powered project planning and development workflow that breaks large tasks into smaller phases and manageable steps.
+
+**Main Purpose:**
+- Break large tasks into smaller tasks.
+- Plan project development.
+- Organize tasks into phases.
+- Execute and verify work step by step.
+
+**Example:**
+
+Instead of asking AI to build a complete authentication system, GSD breaks it into:
+
+1. Analyze the existing project.
+2. Plan authentication.
+3. Design database changes.
+4. Implement signup and login.
+5. Add JWT authentication.
+6. Implement authorization.
+7. Test APIs.
+8. Verify the implementation.
+
+**When to Use?**
+- Large features.
+- New modules.
+- Complex project changes.
+- Multi-step development.
+
+**Useful Commands:**
+```text
+/gsd-help
+/gsd-new-project
+/gsd-plan-phase 1
+/gsd-execute-phase 1
+```
+
+*Commands may vary depending on the installed version.*
+
+**Main Benefit:** Better planning, task management, and structured development.
+
+Official Repository: https://github.com/gsd-build/get-shit-done
+
+---
+
+## 2. Ralph Wiggum
+
+**Definition:** Ralph Wiggum is an iterative autonomous coding workflow that helps an AI agent repeatedly implement tasks, run tests, evaluate results, and continue until defined completion criteria are met or a configured limit is reached.
+
+**Main Purpose:**
+- Automate repetitive coding tasks.
+- Continue working through a task list.
+- Run tests after code changes.
+- Track remaining work.
+- Improve implementations iteratively.
+
+**How It Works:**
+
+1. Identify the next task.
+2. Analyze the relevant code.
+3. Implement changes.
+4. Run tests.
+5. Evaluate the results.
+6. Update the task plan.
+7. Continue to the next task.
+
+**When to Use?**
+- Multi-step bug fixing.
+- Repetitive development tasks.
+- Automated implementation and testing.
+- Tasks with clear completion criteria.
+
+**Example Prompt:**
+```text
+Use the Ralph Wiggum workflow to fix the bugs
+in my project. Work on one issue at a time,
+run relevant tests, update the task plan,
+and continue within a maximum of 5 iterations.
+Do not overwrite unrelated changes.
+```
+
+**Main Benefit:** Helps automate iterative coding and testing.
+
+**Important:** Always use iteration limits and review the final changes. Autonomous execution does not guarantee correct results.
+
+Official Repository: https://github.com/burakkaygusuz/ralph-wiggum
+
+---
+
+## 3. CodeRabbit
+
+**Definition:** CodeRabbit is an AI-powered code-review tool that analyzes code changes to identify potential bugs, security vulnerabilities, and code-quality issues.
+
+**Main Purpose:**
+- Find potential bugs.
+- Detect security weaknesses.
+- Identify problematic code patterns.
+- Suggest code improvements.
+- Help review proposed fixes.
+
+**How It Works:**
+
+1. Review the code or code changes.
+2. Identify potential issues.
+3. Explain the findings.
+4. Suggest fixes.
+5. Apply appropriate fixes.
+6. Run tests and review the changes again.
+
+**When to Use?**
+- After implementing a feature.
+- Before merging a pull request.
+- When debugging suspicious code.
+- For security and quality checks.
+- When reviewing AI-generated code.
+
+**Example Prompt:**
+```text
+Review my latest code changes using CodeRabbit.
+Identify potential bugs, security issues, and
+missing edge cases. Help fix confirmed issues,
+run relevant tests, and review the fixes again.
+Do not modify unrelated files.
+```
+
+**Main Benefit:** Improves code quality by providing an additional review layer.
+
+**Important:** CodeRabbit can miss bugs or report false positives. Verify its findings before applying fixes.
+
+Official Website: https://www.coderabbit.ai/
+
+Antigravity Plugin: https://github.com/coderabbitai/antigravity-plugin
+
+---
+
+## 4. Difference Between the Three Tools
+
+| Tool | Main Role | Best Use |
+|---|---|---|
+| GSD | Project planner | Breaking large tasks into smaller tasks |
+| Ralph Wiggum | Autonomous coding workflow | Iterative implementation and testing |
+| CodeRabbit | Code reviewer | Finding potential bugs and reviewing changes |
+
+---
+
+## 5. Recommended Workflow
+
+```text
+          ANTIGRAVITY
+                |
+                v
+        G
